@@ -1,0 +1,100 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\newtheorem{define}{Definition}
+\newtheorem{thm}{Theorem}
+\newthorem{methods}{Method of Solution}
+\author{David Cardozo}
+\title{Review of Differential Equations}
+\begin{document}
+\maketitle
+These notes contains the main methods for solutions of differential equations which were covered in  the course \textit{Ecuaciones Diferenciales} at Universidad de los Andes.
+\section{First Order Differential Equations}
+\begin{define}
+A first order differential equation of the form:
+\begin{equation}
+\dfrac{dy}{dx} = g(x)h(y)
+\end{equation}
+is said to be separable or to have separable variables.
+\end{define}
+\begin{thm}
+The solution for a differential equation that is separable can be found by the following method:
+\begin{align*}
+\dfrac{dy}{dx} = g(x)h(y) \\
+\dfrac{dy}{h(y)} = g(x)dx
+\end{align*}
+So that the general solution can be found as:
+\begin{equation}
+\int \dfrac{dy}{h(y)} = \int g(x) dx
+\end{equation}
+\end{thm}
+
+\begin{define}
+A first order differential equations of the form:
+\begin{equation} \label{eq:linear}
+a_1(x)\dfrac{dy}{dx} + a_0(x)y = g(y)
+\end{equation}
+and $a_1 \neq 0$ is said to be a linear equation in the variable y.
+\end{define}
+\textbf{Remark} Observe that the linear equation \eqref{eq:linear}
+can be transformed into a more known form of the linear equation:
+\begin{equation} \label{LinearDif}
+\dfrac{dy}{dx} + P(x)y 	= f(x)
+\end{equation}
+by dividing \eqref{eq:linear} by $a_1(x)$ since $a_1(x) \neq 0$
+\begin{thm}
+A linear differential equation of the form:
+\begin{equation*}
+\dfrac{dy}{dx} + P(x)y 	= f(x)
+\end{equation*}
+has a solution of the form:
+\begin{equation} \label{eq:linearsolution}
+y(x) = \dfrac{\int \mu(x)f(x)dx}{ \mu(x)}
+\end{equation}
+where $\mu(x)$ is defined as:
+\begin{equation*}
+\mu(x) = e^{ \int P(x) dx}
+\end{equation*}
+\end{thm}
+\textbf{Remark} In conclusion, observe that for solving a linear first order differential equations we take the following steps:
+\begin{itemize}
+\item Put linear equation into the form \eqref{LinearDif}.
+\item Identify correctly $P(x)$ and find the integrating factor $ \mu(x) = e^{ \int P(x) dx}$. For easiness choose the integration constant to be zero.
+\item Use \eqref{eq:linearsolution} to find the solution.
+\end{itemize} 
+So before we define of what it is a exact differential equation, we need the definition of an exact differential from vector calculus.
+\begin{define}
+A differential expression $ M(x,y)dx + N(x,y)dy $ is an \textbf{exact differential} if it corresponds to the differential of some function $f(x,y)$, that is, given a function of two variables, say $ z = f(x,y) $, it happens that $ dz =  \dfrac{\partial f}{\partial x}dx + \dfrac{\partial f}{\partial y}dy = M(x,y)dx + N(x,y)dy $.
+\end{define}
+\textbf{Remark}
+Observe that in the special case that we take a function of the form $ f(x,y) = c $ where $c$ is any real number, the differential of $f(x,y)$ is:
+\begin{equation*}
+\dfrac{\partial f}{\partial x} dx + \dfrac{\partial f}{\partial y} dy = 0
+\end{equation*}
+Remember that the derivative of a number is zero. 
+
+\textbf{Example}
+Let $ f(x,y) = 5x^3 + 12xy + 5y^2 = c $, where $c$ is any real number, the differential of $f$ is $ (15x^2 + 12y) dx + ( 12x + 10y) = 0 $. Since $ \dfrac{\partial f}{\partial x} = 15x^2 + 12y $, $\dfrac{\partial f}{\partial y} = 12x + 10y$, and $ df = 0 $ since $ f(x,y) = c$ and the derivative of a number (in this case c) is zero. We say $ (15x^2 + 12y) dx + ( 12x + 10y)  $ is an exact differential, since is the differential of $ f(x,y) = 5x^3 + 12xy + 5y^2 = c$
+\begin{define}
+A first order differential equation of the form
+\begin{equation} \label{eq:exact}
+M(x,y)dx + N(x,y)dy = 0
+\end{equation}
+is said to be an \textbf{exact equation} if the expression on the left-hand side is an exact differential.
+\end{define}
+So the question at this moment is: given an expression of the form $M(x,y)dx + N(x,y)dy$. How we know is an exact differential? The following theorem provides an answer.
+\begin{thm}
+Let $M(x,y)$ and $N(x,y)$ be continuous and have continuous first partial derivatives. Then a necessary and sufficient condition that $M(x,y)dx + N(x,y)dy$ be an exact differential is:
+\begin{equation}
+\dfrac{\partial M}{\partial y} = \dfrac{\partial N}{\partial x}
+\end{equation} 
+\end{thm}
+So that to check a first order differential equation is an exact equation, put the differential equation into the form \eqref{eq:exact} and check if the partial derivatives are equal.
+
+Now if the differential equation is an exact equation the solution is found with the following method
+
+
+
+\end{document}
