@@ -1,0 +1,44 @@
+\section{The Laplace Transform}
+Many problems encountered in physics and engineering involves forces that are represented by discontinuous functions, observe that many of the methods described above for solving differential equations are rather complicated or awkward to use, in this section, we will define and get acquainted with a tool that will allow us to solve a complicated differential equation, by translating the problem into an algebraic problem, which is more easy to solve.
+\subsection{Mathematical Background}
+The following section contains a small discussion on improper integrals and the existence theorems of the Laplace transform, as such, it can be omitted.\texttt{}
+\begin{define}
+	An improper integral over an bounded interval is defined as a limit of integrals over finite intervals; thus
+	\begin{align*}
+	\int_0^\infty f(t) dt = \lim_{A \rightarrow \infty} \int_a^{A} f(t) dt
+	\end{align*}
+	if the limit exist, we say that the improper integral \textbf{converges}. Otherwise we say that the integral \textbf{diverges}.
+\end{define}
+The following definitions will be important for studying the existence of improper integrals.
+\begin{define}
+	A function $f$ is said to be \textbf{piecewise continuous} on an interval $ \alpha \leq t \leq \beta $. If there exist a partition $P = \left\lbrace \alpha = t_0 < t_1 < \ldots t_n = \beta \right\rbrace $ so that:
+	\begin{itemize}
+		\item $f$ is continuous in each open subinterval $(t_{i-1},t_i)$
+		\item $f$ approaches a finite limit as the endpoints of each subinterval are approached from within the subinterval
+	\end{itemize}
+\end{define}
+In different words, we say that $f$ is piecewise continuous on an interval, if it is continuous there except for a finite number of jump discontinuities (not easy to show). 
+Now since we are studying the existence of the improper integral, observe that if the integral has a closed form solution, i.e, you can ``evaluate'' the integral, it is usually simple to see if the limit exist. Observe then, that we cannot say much of the existence of the limit, if we do not have a closed form solution. For circumventing this problem, we will make use of the following theorem that will allow us to compare and test improper integrals:
+\begin{thm}
+	If $f$ is piecewise continuous for $t \geq a$, if $ \vert f(t) \vert \leq g(t) $ when $t \geq M$ for some positive constant $M$, and if $ \int_M^\infty g(t)dt $ converges, then $ \int_a^{\infty} f(t) dt $ also converges. On the other hand, if $f(t) \geq g(t) \geq 0 $ for $ t \geq M$, and if $ \int_M^{\infty} g(t) dt $ diverges, then $ \int_a^{\infty} f(t) dt $ also diverges
+\end{thm} 
+The proof of this theorem can be found in any Calculus book, or it can be thoroughly studied in a real analysis class.
+However, observe that our geometric intuition can give us an image of why the preceding theorem is true, in the way of comparing areas of the functions.
+Now, we will see that the Laplace transform is an special transform of a larger set of integral transforms.
+\begin{define}
+	An \textbf{integral transform} is a relation of the form:
+	\begin{align*}
+	F(s) = \int_{\alpha}^{\beta} K(s,t)f(t) dt
+	\end{align*}
+	Where $K$ is a given function known as the \textbf{kernel} of the transformation. In all cases, $ \alpha $ and $ \beta$ are given, and are elements of the extended real line ($\mathbb{R} \cup \left\lbrace  -\infty,\infty \right\rbrace$) 
+	\end{define}
+Observe that the previous relation is acting on $f$, that is, we are giving an arbitrary function $f$ and we are getting a different function $F$.
+
+There are many useful integral transformation in applied mathematics, but for this section we will use the Laplace transform, which is defined by:
+\begin{define}
+	The \textbf{Laplace transform} of a function $f$ is given by:
+	\begin{align*}
+	\LL\braces{f(t)} = F(s) = \int_0^{\infty} e^{-st}f(t)dt
+	\end{align*}
+\end{define}
+
