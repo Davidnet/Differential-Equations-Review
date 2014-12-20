@@ -35,10 +35,154 @@ Now, we will see that the Laplace transform is an special transform of a larger 
 Observe that the previous relation is acting on $f$, that is, we are giving an arbitrary function $f$ and we are getting a different function $F$.
 
 There are many useful integral transformation in applied mathematics, but for this section we will use the Laplace transform, which is defined by:
-\begin{define}
+\begin{define} \label{def:Laplace}
 	The \textbf{Laplace transform} of a function $f$ is given by:
 	\begin{align*}
 	\LL\braces{f(t)} = F(s) = \int_0^{\infty} e^{-st}f(t)dt
 	\end{align*}
 \end{define}
+The general idea of using the Laplace transform is:
+\begin{itemize}
+	\item Use the previous relation to transform a differential equation on $f$ in the $t$ domain and then transforming into an algebraic problem for the transform $F$ in the variable $s$
+	\item Solve the algebraic problem to find $F$
+	\item Recover the function $f$ from $F$, this last step is usually ``inverting'' the transform
+\end{itemize}
+The problem now is to investigate, when does the Laplace transform exist, the following theorem provides us an answer:
+\begin{thm}
+	Suppose that
+	\begin{itemize}
+		\item $f$ is piecewise continuous on the interval $ 0 \leq t \leq A$ for any positive $A$ 
+		\item $ |f(t)| \leq Ke^{at} $ where $ t \geq M$. In this inequality, $K, a$, and $M$ are real constants, $K$ and $M$ necessarily positive
+	\end{itemize}
+	Then the Laplace transform $ \LL \braces{f(t)} = F(s)$, defined by Definition \ref{def:Laplace}, exist for $ s > a$.
+\end{thm}
+
+\begin{proof}
+	We want to see that the integral in Definition \ref{def:Laplace} converges for $ s > a$. So observe that we can write the integral as:
+	\begin{align}
+	\int_0^\infty e^{-st}f(t)dt = \int_0^M e^{-st}f(t)dt + \int_M^\infty e^{-st}f(t)dt
+	\end{align}
+	and we see that the first integral of the right hand side exists with the first of the hypotheses of the theorem. and now for the second integral, we observe that the second of the hypotheses we have, for $t \geq M$,
+	\begin{align*}
+	|e^{-st}| \leq Ke^{-st}e^{at} = Ke^{a-s}t
+	\end{align*}
+	And thus by comparison (the comparison theorem in this section), we see that $F(s)$ exists provided that $ \int_M^{\infty} e^{(a-s)t} dt $ converges. We see then that this integral only converges when $ (a-s) < 0$, or equivalently $a<s$. Which establish the theorem.
+\end{proof}
+A few remarks are in order. First, as in the book, class, and this notes, we deal exclusively with functions that satisfy the conditions of the above theorem, although this may seem that we are reducing our library of functions, we can say that these functions will be sufficient for physics and applied mathematics (some obscure functions may appear, but they are the \emph{pathological} examples created by pure mathematicians). Second, the functions that satisfy the above theorem are called as piecewise continuous and of \textbf{exponetial order} as $ t \rightarrow \infty$. (For more information on this subjects look up Big-O notation)
+\subsection{Using the Laplace Transform}
+We define the Laplace Transform as:
+\begin{define} \label{def:Laplace}
+	The \textbf{Laplace transform} of a function $f$ is given by:
+	\begin{align*}
+	\LL\braces{f(t)} = F(s) = \int_0^{\infty} e^{-st}f(t)dt
+	\end{align*}
+\end{define}
+But as you will see, it is rather cumbersome to work with the definition, let us see that with an example. Suppose that we want to know the Laplace transform of $f(t) = \sin(at) $ 
+\begin{mdframed}
+\textbf{Example} Compute the Laplace transform of $ f(t) = \sin(at) $ for $ t \geq 0 $.
+\begin{align*}
+\LL\braces{\sin(at)} = F(s) = \int_0^{\infty}e^{-st}\sin(at)dt, \quad s>0
+\end{align*}
+Equivalently,
+\begin{align*}
+F(s) = \lim_{A \rightarrow \infty} \int_0^{A}e^{-st}\sin(at)dt
+\end{align*}
+We integrate by parts. Using $u = e^{-st}$ and $dv= \sin(at)$, which implies $du = -se^{-st}$ and $ v = -\frac{\cos(at)}{a}$
+\begin{align*}
+F(s) = \lim_{A \rightarrow \infty} \left[ \left. -\frac{e^{-st}\cos(at)}{a} \right|_0^A - \frac{s}{a}\int_0^Ae^{-st}\cos(at)dt   \right] \\
+=\frac{1}{a} - \frac{s}{a}\int_0^{\infty}e^{-st}\cos(at)dt
+\end{align*}
+A second integration on the integral, with $ u = e^{-st}$ and $ dv = \cos(at) $, which implies $ du = -se^{-st}$ and $ v = \sin(at)$, yields
+\begin{align*}
+F(s) = \frac{1}{a} - \frac{s^2}{a^2}\int_0^{\infty}e^{-st}\sin(at)dt \\
+F(s) = \frac{1}{a} - \frac{s^2}{a^2}F(s)
+\end{align*}
+Finally, solving for $F(s)$
+\begin{align*}
+	F(s) = \frac{a}{s^2+a^2} \quad s>0
+\end{align*}
+\end{mdframed}
+So observe that wasn't a very useful or easy work.Before we embark on our study of Laplace transform of functions, we will need the following theorem.
+\begin{thm}
+	The Laplace transform is a \textbf{linear operator}, that is, the Laplace transform complies with:
+	\begin{align*}
+	\LL\braces{c_1f_1(t) + c_2f_2(t)} = c_1\LL\braces{f_1(t)} + c_2\LL\braces{f_2(t)}
+	\end{align*} 
+	Where $c_1,c_2$ are real numbers (it even holds for complex numbers, which allows for neat tricks), and $f_1,f_2$ are functions whose Laplace transforms exist.
+\end{thm} 
+\begin{proof}
+	From the definition, Suppose $c_1,c_2$ are real numbers, and $f_1,f_2$ are functions such that the Laplace transform of these functions exists. Observe
+	\begin{align*}
+	\LL\braces{c_1f_1(t) + c_2f_2(t)} = \int_0^\infty e^{-st} \left[ c_1f_1(t) + c_2f_2(t) \right]dt \\
+	= c_1 \int_0^\infty e^{-st}f_1(t) + c_2 \int_0^\infty e^{-st}f_2(t)
+	\end{align*}
+	Therefore, we get
+	\begin{align*}
+	\LL\braces{c_1f_1(t) + c_2f_2(t)} = c_1\LL\braces{f_1(t)} + c_2\LL\braces{f_2(t)}
+	\end{align*}
+	Which is the desired result.
+	Observe that this proof can be generalized to a arbitrary number of terms, that is:
+	\begin{align*}
+	\LL\braces{\sum_{i = 1}^{n} f_i(t)} = \sum_{i = 1}^{n} \LL\braces{f_i(t)}
+	\end{align*}
+\end{proof}
+Now, since this a course on differential equation, the main objective is to solve differential equations using the Laplace transform, the bridge will be given by the following theorem. \newline
+\textbf{Remark} From now on, we will assume that the functions given are of exponential order and piecewise continuous, this is made in order to simplify the theorems.
+\begin{thm}
+	The Laplace transform of the nth-derivative of a function $f$, that is, $ \LL\braces{f^{(n)} (t)} $ is given by:
+	\begin{align*}
+	\LL\braces{f^{(n)} (t)} = s^n \LL\braces{f(t)} - s^{n-1}f(0) - \ldots -sf^{(n-2)}(0) - f^{(n-1)}(0).
+	\end{align*}
+\end{thm} 
+\textbf{Remark} Observe that for case $n=2$ (the most encountered case in this course, worth memorizing) the theorem is telling us that:
+\begin{align*}
+\LL\braces{f^{(2)} (t)} = s^2\LL\braces{f(t)} - sf(0) - f(0)
+\end{align*}
+Let us observe this in action with an example.
+\begin{mdframed}
+	Consider the following differential equation:
+	\begin{align*}
+	\frac{d^2f}{dt^2} - \frac{df}{dt} - 2f(t) = 0
+	\end{align*}
+	with the initial value conditions:
+	\begin{align*}
+	f(0) = 1, \quad \eval{\frac{df}{dt}}{t}{0} = 0
+	\end{align*}
+	Although, we already know a procedure to solve this particular differential equation, let us use the tool of Laplace transform. First, let us take the Laplace transform to both sides.
+	\begin{align*}
+	\LL\braces{\frac{d^2f}{dt^2} - \frac{df}{dt} - 2f(t) = 0} = \LL\braces{0} \\
+	\laplace{\frac{d^2f}{dt^2}} - \laplace{\frac{df}{dt}} - \laplace{2f(t)} = 0\\
+	\laplace{f^{(2)}(t)} - \laplace{f^{(1)}(t)} -2\laplace{f(t)}  = 0
+	\end{align*}
+	And using our previous theorem we have:
+	\begin{align*}
+		s^2\laplace{f(t)} - sf(0) - \eval{\frac{df}{dt}}{t}{0} - \left[ s\laplace{f(t)} - f(0) \right] -2\laplace{f(t)} = 0 \\
+		s^2\laplace{f(t)} - sf(0) - f^{(1)}(0) - \left[ s\laplace{f(t)} - f(0) \right] -2\laplace{f(t)} = 0 \\
+	\end{align*}
+	Now using the initial value conditions and letting $ \laplace{f(t)} = F(s) $ we have
+	\begin{align*}
+	\left( s^2 - s -2\right)F(s) + (1-s)f(0) - f^{(1)}(0) = 0
+	\end{align*}
+	equivalently,
+	\begin{align*}
+	F(s) = \frac{s-1}{s^2 - s -2} = \frac{s-1}{(s-2)(s+1)}
+	\end{align*}
+	Let's use partial fractions on the last inequality to get:
+	\begin{align*}
+	F(s) = \frac{s-1}{(s-2)(s+1)} = \frac{1/3}{s-2} + \frac{2/3}{s+1}
+	\end{align*}
+	Now observe that we evaluated that: $ \laplace{\frac{1}{3}e^{2t}} = \frac{1/3}{s-2} $. Similarly, $ \laplace{\frac{2}{3}e^{-t}} = \frac{2/3}{s+1}$. so that:
+	\begin{align*}
+	\laplace{\frac{1}{3}e^{2t}} + \laplace{\frac{2}{3}e^{-t}} = F(s) \\
+	\laplace{ \frac{1}{3}e^{2t} + \frac{2}{3}e^{-t}} = F(s) = \laplace{f(t)}
+	\end{align*}
+	Which implies then
+	\begin{align*}
+	f(t) = \frac{1}{3}e^{2t} + \frac{2}{3}e^{-t}
+	\end{align*}
+\end{mdframed}
+So observe that, we have just transformed a differential equation problem into an algebraic one, and we just work out the ``reverse'' Laplace transform at the end. This is the power of the Laplace transform
+
+
+
 

@@ -3,6 +3,8 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mdframed} %frames around examples
 \newtheorem{define}{Definition}
 \newtheorem{thm}{Theorem}
 \author{David Cardozo}
@@ -11,6 +13,9 @@
 
 \newcommand{\LL}{\mathcal{L}}
 \newcommand{\braces}[1]{ \left\lbrace #1 \right\rbrace}
+\newcommand{\eval}[3]{\left. #1 \right|_{#2 = #3}} 
+\newcommand{\laplace}[1]{\LL\braces{#1}}
+
 \begin{document}
 \maketitle
 These notes contains the main methods for solutions of differential equations which were covered in  the course \textit{Ecuaciones Diferenciales} at Universidad de los Andes.
