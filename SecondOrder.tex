@@ -1,0 +1,38 @@
+\section{Second Order Differential Equations}
+\subsection{Classification of Differential Equations}
+With the same classification we use for first order differential equations, we classify the most general differential equation, that is, the subject of this section is the study of the differential equation of the form:
+\begin{align*}
+\frac{dx^2}{dt^2}= f(x,t, \frac{dx}{dt})
+\end{align*}
+Where $x$ is a function of $t$, that is $x(t)$ and $f$ is an arbitrary function.
+
+In general is rather impossible to solve analytically this equation, but there exist some cases to which is possible to find a solution using paper and pencil, the characterization of these equations is that $f$, in the equation above is a linear function on $\frac{dx}{dt}$, in other words:
+\begin{align*}
+f(x,t,\frac{dx}{dt}) = A(t) + B(t)\frac{dx}{dt} + C(t)x
+\end{align*}
+Observe then, that $A,B,$ and $C$ are function of $t$ only, the independent variable. The second linear order differential equations is most commonly discussed as:
+\begin{align*}
+\frac{dx^2}{dt^2} + p(t) \frac{dx}{dt} + q(t)x = g(t)
+\end{align*}
+This is obtained above with $p(t) = -B(t), q(t) = -C(t),$ and $ g(t) = A(t) $.  \newline
+Observe that if you encounter the equation:
+\begin{align*}
+P(t)\frac{dx^2}{dt^2} + Q(t) \frac{dx}{dt} + R(t)x = G(t)
+\end{align*}
+it can be put in the standard form by dividing the whole equation by $P(t)$. \newline
+with this discussion, we can start with a definition of second order linear differential equation.
+\begin{define}
+	A \textbf{second order linear differential equation} is a differential relationship that can be put into the standard form:
+	\begin{align*}
+	\frac{dx^2}{dt^2} + p(t) \frac{dx}{dt} + q(t)x = g(t)
+	\end{align*} 
+	An \textbf{initial value problem} is an specification of the above equation given by:
+	\begin{align*}
+	x(t_0) = x_o \quad \text{and} \quad \eval{\frac{dx}{dt}}{x}{t_0} = x_1
+	\end{align*}
+	We say that the second order linear differential equation is \textbf{homogeneous} if $g(t) = 0 $ and \textbf{nonhomgenous} if it is otherwise.	
+\end{define} 
+\textbf{Remark} We often abbreviate the differential operator $\frac{d}{dx}$ with the use of the primer mark $'$, if the independent variable is clear from context, that is, the standard form of the second order differential equation is:
+\begin{align*}
+x'' + p(t)x'+ q(t)x = g(t)
+\end{align*}
