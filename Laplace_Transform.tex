@@ -1,7 +1,7 @@
 \section{The Laplace Transform}
 Many problems encountered in physics and engineering involves forces that are represented by discontinuous functions, observe that many of the methods described above for solving differential equations are rather complicated or awkward to use, in this section, we will define and get acquainted with a tool that will allow us to solve a complicated differential equation, by translating the problem into an algebraic problem, which is more easy to solve.
 \subsection{Mathematical Background}
-The following section contains a small discussion on improper integrals and the existence theorems of the Laplace transform, as such, it can be omitted.\texttt{}
+The following section contains a small discussion on improper integrals and the existence theorems of the Laplace transform, as such, it should be glimpsed.
 \begin{define}
 	An improper integral over an bounded interval is defined as a limit of integrals over finite intervals; thus
 	\begin{align*}
@@ -68,7 +68,45 @@ The problem now is to investigate, when does the Laplace transform exist, the fo
 	\end{align*}
 	And thus by comparison (the comparison theorem in this section), we see that $F(s)$ exists provided that $ \int_M^{\infty} e^{(a-s)t} dt $ converges. We see then that this integral only converges when $ (a-s) < 0$, or equivalently $a<s$. Which establish the theorem.
 \end{proof}
-A few remarks are in order. First, as in the book, class, and this notes, we deal exclusively with functions that satisfy the conditions of the above theorem, although this may seem that we are reducing our library of functions, we can say that these functions will be sufficient for physics and applied mathematics (some obscure functions may appear, but they are the \emph{pathological} examples created by pure mathematicians). Second, the functions that satisfy the above theorem are called as piecewise continuous and of \textbf{exponetial order} as $ t \rightarrow \infty$. (For more information on this subjects look up Big-O notation)
+A few remarks are in order. First, as in the book, class, and this notes, we deal exclusively with functions that satisfy the conditions of the above theorem, although this may seem that we are reducing our library of functions, we can say that these functions will be sufficient for physics and applied mathematics (some obscure functions may appear, but they are the \emph{pathological} examples created by pure mathematicians). Second, the functions that satisfy the above theorem are called as piecewise continuous and of \textbf{exponential order} as $ t \rightarrow \infty$. (For more information on this subjects look up Big-O notation).
+
+Now, we have just shown that the Laplace transform is an application from the set of functions that are of \textbf{exponential order} to  the set of function of s-domain. Now we want to be able to define a function from functions of s-domain to the functions of exponential order. The following theorem provides us with a tool:
+
+\begin{thm}
+	(\textbf{Informal Lerch's Theorem} - Uniqueness of Inverese Laplace Transforms). Suppose $f(t)$ and $g(t)$ are continuous on $ [, \infty)$ and of exponential order $ \gamma$. If $ \laplace{f(t)} = \laplace{g(t)} $ for all  $s > \gamma$, then $f(t) = g(t)$ for all $ t \geq 0$
+\end{thm}
+
+Strictly speaking this theorem is false in general, but for many (mostly all of them) functions in applied mathematics, the theorem above is true.
+The formal version of the above theorem is:
+\begin{thm}
+	\textbf{Lerch's Theorem}. If there are two functions $F_1(t)$ and $F_2(t)$ with the same integral transform:
+	\begin{align*}
+	\laplace{F_1(t)} = \laplace{F_2(t)} \equiv f(s)
+	\end{align*}
+	then a \textbf{null function} can be defined by:
+	\begin{align*}
+	\delta_0(t) = F_1(t) - F_2(t)
+	\end{align*}
+	so that the integral
+	\begin{align*}
+	\int_0^a \delta_0(t) dt = 0
+	\end{align*}
+	vanishes for all $a>0$
+\end{thm} 
+
+With these theorems we can then define an \textbf{inverse Laplace transform}:
+
+\begin{define}
+	Given a function $f$ that has a Laplace transform, that is:
+	\begin{align*}
+	\laplace{f(t)} = F(s)
+	\end{align*}
+	We define the \textbf{Inverse Laplace transform} as:
+	\begin{align*}
+		\laplaceinv{F(s)} = f(t)
+	\end{align*}
+\end{define}
+Although this seem a rather empty definition, we do not provide a direct method to get Laplace inverse transforms, rather we just spent doing a lot of Laplace transforms and defining the inverse Laplace transform with the above definition
 \subsection{Using the Laplace Transform}
 We define the Laplace Transform as:
 \begin{define} \label{def:Laplace}
@@ -181,7 +219,20 @@ Let us observe this in action with an example.
 	f(t) = \frac{1}{3}e^{2t} + \frac{2}{3}e^{-t}
 	\end{align*}
 \end{mdframed}
-So observe that, we have just transformed a differential equation problem into an algebraic one, and we just work out the ``reverse'' Laplace transform at the end. This is the power of the Laplace transform
+So observe that, we have just transformed a differential equation problem into an algebraic one, and we just work out the ``reverse'' Laplace transform at the end. This is the power of the Laplace transform.
+This last part allows us to define and introduce then the \textbf{inverse Laplace transform}.
+\begin{define}
+	Given a function $f$ that has a Laplace transform, that is:
+	\begin{align*}
+	\laplace{f(t)} = F(s)
+	\end{align*}
+	We define the \textbf{Inverse Laplace transform} as:
+	\begin{align*}
+	\laplaceinv{F(s)} = f(t)
+	\end{align*}
+\end{define}
+The existence and \emph{well definedness} of the inverse is discussed above. Although this seem a rather empty definition, we do not provide a direct method to get Laplace inverse transforms, rather we just spent doing a lot of Laplace transforms and defining the inverse Laplace transform with the above definition.
+The following provides a table with the most encountered Laplace transform and (Laplace transform inverses).
 
 
 

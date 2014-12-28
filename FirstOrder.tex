@@ -1,0 +1,172 @@
+\section{First Order Differential Equations}
+\begin{define}
+A first order differential equation of the form:
+\begin{equation}
+\dfrac{dy}{dx} = g(x)h(y)
+\end{equation}
+is said to be separable or to have separable variables.
+\end{define}
+\begin{thm}
+The solution for a differential equation that is separable can be found by the following method:
+\begin{align*}
+\dfrac{dy}{dx} = g(x)h(y) \\
+\dfrac{dy}{h(y)} = g(x)dx
+\end{align*}
+So that the general solution can be found as:
+\begin{equation}
+\int \dfrac{dy}{h(y)} = \int g(x) dx
+\end{equation}
+\end{thm}
+
+\begin{define}
+A first order differential equation of the form:
+\begin{equation} \label{eq:linear}
+a_1(x)\dfrac{dy}{dx} + a_0(x)y = g(y)
+\end{equation}
+and $a_1 \neq 0$ is said to be a linear equation in the variable y.
+\end{define}
+\textbf{Remark} Observe that the linear equation \eqref{eq:linear}
+can be transformed into a more known form of the linear equation:
+\begin{equation} \label{LinearDif}
+\dfrac{dy}{dx} + P(x)y 	= f(x)
+\end{equation}
+by dividing \eqref{eq:linear} by $a_1(x)$ since $a_1(x) \neq 0$
+\begin{thm}
+A linear differential equation of the form:
+\begin{equation*}
+\dfrac{dy}{dx} + P(x)y 	= f(x)
+\end{equation*}
+has a solution of the form:
+\begin{equation} \label{eq:linearsolution}
+y(x) = \dfrac{\int \mu(x)f(x)dx}{ \mu(x)}
+\end{equation}
+where $\mu(x)$ is defined as:
+\begin{equation*}
+\mu(x) = e^{ \int P(x) dx}
+\end{equation*}
+\end{thm}
+\textbf{Remark} In conclusion, observe that for solving a linear first order differential equations we take the following steps:
+\begin{itemize}
+\item Put linear equation into the form \eqref{LinearDif}.
+\item Identify correctly $P(x)$ and find the integrating factor $ \mu(x) = e^{ \int P(x) dx}$. For easiness choose the integration constant to be zero.
+\item Use \eqref{eq:linearsolution} to find the solution.
+\end{itemize} 
+So before we define of what it is a exact differential equation, we need the definition of an exact differential from vector calculus.
+\begin{define}
+A differential expression $ M(x,y)dx + N(x,y)dy $ is an \textbf{exact differential} if it corresponds to the differential of some function $f(x,y)$, that is, given a function of two variables, say $ z = f(x,y) $, it happens that $ dz =  \dfrac{\partial f}{\partial x}dx + \dfrac{\partial f}{\partial y}dy = M(x,y)dx + N(x,y)dy $.
+\end{define}
+\textbf{Remark}
+Observe that in the special case that we take a function of the form $ f(x,y) = c $ where $c$ is any real number, the differential of $f(x,y)$ is:
+\begin{equation*}
+\dfrac{\partial f}{\partial x} dx + \dfrac{\partial f}{\partial y} dy = 0
+\end{equation*}
+Remember that the derivative of a number is zero. 
+
+\textbf{Example}
+Let $ f(x,y) = 5x^3 + 12xy + 5y^2 = c $, where $c$ is any real number, the differential of $f$ is $ (15x^2 + 12y) dx + ( 12x + 10y) = 0 $. Since $ \dfrac{\partial f}{\partial x} = 15x^2 + 12y $, $\dfrac{\partial f}{\partial y} = 12x + 10y$, and $ df = 0 $ since $ f(x,y) = c$ and the derivative of a number (in this case c) is zero. We say $ (15x^2 + 12y) dx + ( 12x + 10y)  $ is an exact differential, since is the differential of $ f(x,y) = 5x^3 + 12xy + 5y^2 = c$
+\begin{define}
+A first order differential equation of the form
+\begin{equation} \label{eq:exact}
+M(x,y)dx + N(x,y)dy = 0
+\end{equation}
+is said to be an \textbf{exact equation} if the expression on the left-hand side is an exact differential.
+\end{define}
+So the question at this moment is: given an expression of the form $M(x,y)dx + N(x,y)dy$. How we know is an exact differential? The following theorem provides an answer.
+\begin{thm}
+Let $M(x,y)$ and $N(x,y)$ be continuous and have continuous first partial derivatives. Then a necessary and sufficient condition that $M(x,y)dx + N(x,y)dy$ be an exact differential is:
+\begin{equation} \label{eq:criterionexact}
+\dfrac{\partial M}{\partial y} = \dfrac{\partial N}{\partial x}
+\end{equation} 
+\end{thm}
+So that to check a first order differential equation is an exact equation, put the differential equation into the form \eqref{eq:exact} and check if the partial derivatives are equal.
+
+Now if the differential equation is an exact equation the solution is found with the following method:
+
+\textbf{Method of solution for an exact equation}
+Given an equation in the form:
+\begin{equation*}
+M(x,y)dx + N(x,y)dy = 0
+\end{equation*}
+First determine if the expression on the left hand side is an exact differential, \textit{i.e} the left hand side complies with the equality on \eqref{eq:criterionexact}. 
+
+If it does, Observe that there exist a function $f$ such that:
+\begin{equation*}
+\dfrac{\partial f}{\partial x} = M(x,y)
+\end{equation*}
+So that, we can find $f$ by integrating $M(x,y)$ with respect to $x$ while holding $y$ constant:
+\begin{equation*}
+f(x,y) = \int M(x,y) dx + g(y)
+\end{equation*}
+Where $g(y)$ appears since it is the constant of integration (Observe that since we are integrating with respect to $x$ the constant of integration can be any function that depends only on $y$).
+
+Now, if we differentiate the previous equation with respect to y, and assume that $ \dfrac{\partial f}{\partial y} = N(x,y) $:
+\begin{align*}
+\dfrac{\partial f}{\partial y} = \dfrac{\partial}{\partial y} \int M(x,y)dx + g'(y) = N(x,y)
+\end{align*}
+Isolating $g'(y)$ and integrating we find $g(y)$
+\begin{equation} \label{eq:usingcriterion}
+g'(y) = N(x,y) - \dfrac{\partial}{\partial y }\int M(x,y)dx \\
+\end{equation}
+So that:
+\begin{equation*}
+g(y) = \int (N(x,y) - \dfrac{\partial}{\partial y }\int M(x,y)dx)dy
+\end{equation*}
+And finally, we have the solution  of the equation given by $f(x,y)=c$.
+
+Before going to do some examples, let us remark two things in this method of solution.
+First, observe that the expression on \eqref{eq:usingcriterion} is independent of $x$, that because
+\begin{align*}
+\dfrac{\partial}{\partial x} \left[ N(x,y) - \dfrac{\partial}{\partial y} \int M(x,y) dx \right] = \dfrac{\partial N}{\partial x} - \dfrac{\partial}{\partial y} \left(  \dfrac{\partial}{\partial x} \int M(x,y) dx \right) = \dfrac{\partial N}{\partial x} - \dfrac{\partial M}{\partial y} = 0
+\end{align*} 
+So observe that the hypothesis that the differential expression is an exact differential is been used (that is why is so important to check for the exact differential criterion, that is, the equality \eqref{eq:criterionexact} holds).
+Second, observe that we could have also started assuming that $ \dfrac{\partial f}{\partial y } = N(x,y) $. After integrating N with respect to $y$ and then differentiating that result, we would have found:
+\begin{equation*}
+f(x,y) = \int N(x,y)dy + h(x) \quad \text{ and } \quad  h'(x) = M(x,y) - \dfrac{\partial}{\partial x} \int N(x,y)dy
+\end{equation*}
+which are analogous to the equations we discussed in the method of solution for exact equations; usually you usd the last two relations when if integrating with respect to $x$ is rather difficult or impossible, whereas integrating to $y$ is much more easy.
+
+It may seem to the reader that the previous discussion is rather complex and complicated, but once  she sees the examples, he would find exact equations easy:
+
+\textbf{Examples}
+Insert examples here
+
+\begin{define}
+The differential equation
+\begin{equation}\label{eq:Bernoulli}
+\dfrac{dy}{dx} + P(x)y = f(x)y^n
+\end{equation}
+where $n$ is any real number, is called \textbf{Bernoulli's equation.}
+\end{define}
+Observe that for the values $n=0$  or $n=1$, \eqref{eq:Bernoulli} is a linear equation for which we know how to solve. The following method of solution is used for when $ n \neq 0,1$.
+\textbf{Method of Solution for Bernoulli Equation}
+
+Assume we have the following differential equation:
+\begin{equation*}
+\dfrac{dy}{dx} + P(x)y = f(x)y^n
+\end{equation*}
+
+Since $y^n \neq 0$ for $n \neq 0,1$ we will divide $y^{n}$ and rewrite as:
+
+\begin{equation} \label{eq:Bernoulli Substituion}
+y^{-n}\dfrac{dy}{dx} + P(x)y^{1-n} = f(x)
+\end{equation}
+Observe $ \dfrac{y}{y^{n}} = y^{1-n} $.
+
+The previous equation suggest that we should do the substitution $ z = y^{1-n} $ (Also called the Bernoulli substitution), which implies:
+\begin{align*}
+\dfrac{dz}{dx} = (1-n) \cdot y^{-n} \dfrac{dy}{dx}
+\end{align*}
+or in a more suggestive way
+\begin{align*}
+\left( \dfrac{1}{1-n} \right)  \dfrac{dz}{dx} =   y^{-n} \dfrac{dy}{dx}
+\end{align*}
+so that \eqref{eq:Bernoulli Substituion} transforms into:
+\begin{align*}
+\left( \dfrac{1}{1-n} \right)  \dfrac{dz}{dx} + P(x)z = f(x)
+\end{align*}
+or 
+\begin{align*}
+\dfrac{dz}{dx} + \left( 1-n \right) P(x) z = \left( 1-n \right) f(x)
+\end{align*}
+Which is a linear equation of the form \eqref{LinearDif}, for which we can find $z$ via \eqref{eq:linearsolution}. 
+Observe that work is not finished there, at the end we need to go our original variables with the relation $ z = y^{1-n} $, that is $ y = z^{1/1-n} $
